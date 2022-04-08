@@ -14,9 +14,21 @@ console.log('Things are fine here before incoming requests ------>');
 
 
 // handle static requests
+// app.use('/', express.static(path.resolve(__dirname, './client')));
+app.get('/client/stylesheets/styles.css' , (req, res) => {
+  res.status(200).type('css').sendFile(path.join(__dirname, './client/stylesheets/styles.css'));
+});
+
+// serves build folder containing bundle.js
+app.use('/build', express.static(path.join(__dirname, '../build')));
 
 // define route handlers
 app.use('/reviews', reviewsRouter);
+
+app.get('/', (req, res) => {
+  console.log('Entered GET request for root, should be serving index.html ----->');
+  return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+});
 
 // catch-all route handler
 app.use((req, res) => {

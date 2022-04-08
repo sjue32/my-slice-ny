@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-module.export = {
+module.exports = {
     entry: './client/index.js',
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -18,7 +18,8 @@ module.export = {
           publicPath: '/'
         },
         proxy: {
-          '/api/leaders': 'http://localhost:3000', // change this proxy root
+          '/reviews': 'http://localhost:3000',
+          '/reviews/stores': 'http://localhost:3000'
         },
         compress: true,
     },

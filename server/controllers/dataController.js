@@ -16,7 +16,7 @@ const dataController = {};
 // read review
 dataController.getReview = (req, res, next) => {
   console.log(`-----------> inside getReview`);
-  const text = 'SELECT cast(date as varchar), cheese_score, crust_score, plain_score, slice_review, name FROM reviews INNER JOIN stores ON store_id = stores._id';
+  const text = 'SELECT cast(date as varchar), cheese_score, crust_score, plain_score, slice_review, name, store_id FROM reviews INNER JOIN stores ON store_id = stores._id';
   db.query(text)
   .then(response => {
     console.log(`------------> inside getReview, post query, reviews: ${response.rows}`);
